@@ -1,0 +1,6 @@
+.DS_Store
+.vercel
+node_modules
+# Private reference files, not part of the website
+business card/
+.claude/
