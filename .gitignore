@@ -5,3 +5,7 @@ node_modules
 business card/
 .claude/
 .env*
+
+# Local design previews (never published)
+preview-options.html
+preview-assets/

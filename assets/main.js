@@ -65,65 +65,29 @@ document.querySelectorAll('[data-year]').forEach((el) => {
   document.documentElement.classList.add('motion-ready');
 })();
 
-// Homepage hero slideshow: crossfades between projects with a caption
+// Homepage full-screen hero: crossfades project photos and updates the caption
 (() => {
-  const root = document.querySelector('.hero-slider');
-  if (!root) return;
-  const slides = [...root.querySelectorAll('.slide')];
-  const caption = root.querySelector('.slider-caption');
-  const cur = root.querySelector('.cur');
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const DURATION = 5500;
-  let i = 0, timer = null, start = 0, elapsed = 0, userPaused = reduce, hovering = false, visible = true;
-
-  root.querySelector('.tot').textContent = String(slides.length).padStart(2, '0');
-
-  // Load the other photos once the page is ready, so crossfades don't flash
-  window.addEventListener('load', () => slides.forEach((s) => { s.querySelector('img').loading = 'eager'; }));
-
-  const setCaption = (s) => {
-    const [a, b, title] = s.dataset.meta.split('|');
-    caption.classList.add('swap');
-    setTimeout(() => {
-      caption.querySelector('.meta').innerHTML = `<span>${a}</span><span>${b}</span>`;
-      caption.querySelector('.slider-title').textContent = title;
-      caption.querySelector('.slider-credit').textContent = s.dataset.credit;
-      caption.classList.remove('swap');
-    }, 250);
-  };
-
-  const go = (n) => {
-    slides[i].classList.remove('is-active');
-    i = (n + slides.length) % slides.length;
-    slides[i].classList.add('is-active');
-    cur.textContent = String(i + 1).padStart(2, '0');
-    setCaption(slides[i]);
-    elapsed = 0; start = performance.now();
-  };
-
-  // One loop times the slide changes (waits while hovered, off screen, or the tab is hidden)
-  const running = () => !userPaused && !hovering && visible && !document.hidden;
-  const tick = (now) => {
-    if (running()) {
-      elapsed += now - start;
-      if (elapsed >= DURATION) go(i + 1);
-    }
-    start = now;
-    timer = requestAnimationFrame(tick);
-  };
-
-  root.querySelectorAll('[data-dir]').forEach((b) =>
-    b.addEventListener('click', () => go(i + Number(b.dataset.dir))));
-  root.querySelector('.slides').addEventListener('mouseenter', () => { hovering = true; });
-  root.querySelector('.slides').addEventListener('mouseleave', () => { hovering = false; });
-  root.addEventListener('focusin', () => { hovering = true; });
-  root.addEventListener('focusout', () => { hovering = false; });
+  const imgs = [...document.querySelectorAll('.fhero-slides img')];
+  const cap = document.querySelector('.fhero-caption');
+  if (imgs.length < 2 || !cap) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  window.addEventListener('load', () => imgs.forEach((im) => { im.loading = 'eager'; }));
+  let i = 0, visible = true;
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(root);
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(document.querySelector('.fhero'));
   }
-
-  start = performance.now();
-  timer = requestAnimationFrame(tick);
+  setInterval(() => {
+    if (!visible || document.hidden) return;
+    imgs[i].classList.remove('on');
+    i = (i + 1) % imgs.length;
+    imgs[i].classList.add('on');
+    cap.classList.add('swap');
+    setTimeout(() => {
+      cap.querySelector('.meta').textContent = imgs[i].dataset.meta;
+      cap.querySelector('strong').textContent = imgs[i].dataset.title;
+      cap.classList.remove('swap');
+    }, 300);
+  }, 5500);
 })();
 
 // Statement that fills in word by word as you scroll past it
