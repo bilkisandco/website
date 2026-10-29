@@ -441,7 +441,7 @@ h2::after {
 
 /* Faint line along the top of the footer */
 .site-footer { border-top: 1px solid rgba(255,255,255,.12); }
-.site-footer .amp { color: var(--pop-light); }
+.site-footer .amp { color: #fff; }
 
 /* ---------- Numbered rows that open on click (How we work / Who we work with) ---------- */
 .rows { border-top: 1px solid var(--line); }
@@ -643,3 +643,10 @@ h2::after {
 
 /* Project credits stay on one line even at the narrowest 3-column width */
 @media (min-width: 901px) and (max-width: 1000px) { .project p { font-size: 0.86rem; } }
+
+/* About: bio sits level with the middle of the founder photo on desktop */
+@media (min-width: 761px) {
+  .about-founder { align-items: center; }
+  .about-founder > div:last-child p:last-child { margin-bottom: 0; }
+  .about-founder > div:last-child { padding-top: var(--eyebrow-offset, 32px); }
+}

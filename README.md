@@ -1,6 +1,6 @@
 # Bilkis & Co. website
 
-The website for Bilkis & Co., independent sales representatives for Mirror Image and Indoteak Design in New York City, New Jersey, Connecticut, and Philadelphia.
+The website for Bilkis & Co., independent sales representatives for Mirror Image and IndoTeak in New York City, New Jersey, Connecticut, and Philadelphia.
 
 Live site: https://bilkisandco.com
 
@@ -14,7 +14,7 @@ The site is hosted on Vercel and connected to this GitHub repository. **Every ti
 |---|---|
 | `index.html` | Home page |
 | `about.html` | About page |
-| `brands.html` | Brands page (Mirror Image and Indoteak Design, side by side) |
+| `brands.html` | Brands page (Mirror Image and IndoTeak, side by side) |
 | `projects.html` | Projects page |
 | `404.html` | "Page not found" page |
 | `assets/styles.css` | All colors, fonts, and layout. Brand colors are at the very top. |
@@ -43,4 +43,4 @@ Then open the address it prints (usually http://localhost:3000).
 
 ## Photo credits
 
-Product and project photography courtesy of Mirror Image and Indoteak Design.
+Product and project photography courtesy of Mirror Image and IndoTeak.
