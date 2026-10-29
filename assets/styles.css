@@ -623,3 +623,23 @@ h2::after {
 .territory-band .territory-head { align-items: center; }
 .region-line { padding-bottom: calc(clamp(18px, 2.2vw, 26px) + 1px); }
 @media (max-width: 760px) { .region-line { padding-bottom: 0; } }
+
+/* Home "How we work" heading on one line (wraps only on phones) */
+.section-head h2.h2-one-line { max-width: none; }
+@media (min-width: 761px) { .h2-one-line { white-space: nowrap; } }
+
+/* About: space reserved for a portrait photo */
+.photo-ph {
+  aspect-ratio: 4 / 5; max-width: 420px; margin-top: 8px;
+  display: grid; place-items: center; text-align: center; padding: 24px;
+  background: var(--paper-2); border: 1px dashed var(--line);
+}
+
+/* About: founder photo */
+.founder-photo { max-width: 420px; margin: 8px 0 0; }
+.founder-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+
+.nowrap { white-space: nowrap; }
+
+/* Project credits stay on one line even at the narrowest 3-column width */
+@media (min-width: 901px) and (max-width: 1000px) { .project p { font-size: 0.86rem; } }
