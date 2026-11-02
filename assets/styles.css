@@ -641,3 +641,7 @@ h2::after {
 
 /* Homepage brand cards: a soft shadow behind the text for extra contrast */
 .brand-card .card-overlay h3, .brand-card .card-overlay p { text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+
+/* Brand descriptions can have more than one paragraph */
+.brand-desc p:last-child { margin-bottom: 0; }
+.brand-desc { margin-bottom: 1em; }
